@@ -19,37 +19,39 @@
 	* License, v. 2.0. If a copy of the MPL was not distributed with this
 	* file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-*/  
+*/
 
 
 /*	Simple JavaScript Inheritance
 	By John Resig http://ejohn.org/
 	MIT Licensed.
 ================================================== */
-(function() {
+( function() {
 	var initializing = false,
 	fnTest = /xyz/.test(function() {
 		xyz;
-		}) ? /\b_super\b/: /.*/;
+		}) ? /\b_super\b/ : /.*/;
+
 		// The base Class implementation (does nothing)
 	this.Class = function() {};
 
-    // Create a new Class that inherits from this class
-	Class.extend = function(prop) {
+	// Create a new Class that inherits from this class
+	Class.extend = function( prop ) {
 		var _super = this.prototype;
 
-        // Instantiate a base class (but only create the instance,
-        // don't run the init constructor)
+		// Instantiate a base class (but only create the instance,
+		// don't run the init constructor)
 		initializing = true;
 		var prototype = new this();
 		initializing = false;
 
-        // Copy the properties over onto the new prototype
-		for (var name in prop) {
-            // Check if we're overwriting an existing function
-			prototype[name] = typeof prop[name] == "function" &&
-			typeof _super[name] == "function" && fnTest.test(prop[name]) ?
-			(function(name, fn) {
+			// Copy the properties over onto the new prototype
+		for ( var name in prop ) {
+
+			// Check if we're overwriting an existing function
+			prototype[name] = 'function' == typeof prop[name] &&
+			'function' == typeof _super[name] && fnTest.test( prop[name] ) ?
+			( function( name, fn ) {
 				return function() {
 					var tmp = this._super;
 
@@ -59,17 +61,18 @@
 
 					// The method only need to be bound temporarily, so we
 					// remove it when we're done executing
-					var ret = fn.apply(this, arguments);
+					var ret = fn.apply( this, arguments );
 					this._super = tmp;
 
 					return ret;
 				};
-			})(name, prop[name]) :
+			}( name, prop[name] ) ) :
 			prop[name];
 		}
 
 		// The dummy class constructor
 		function Class() {
+
 			// All construction is actually done in the init method
 			if (!initializing && this.init)
 			this.init.apply(this, arguments);
@@ -86,256 +89,251 @@
 
 		return Class;
     };
-})();
+}() );
 
 /*	Access to the Global Object
 	access the global object without hard-coding the identifier window
 ================================================== */
-var global = (function () {
-   return this || (1,eval)('this');
-}());
+var global = ( function () {
+	return this || (1,eval)('this');
+}() );
 
 /* VMM
 ================================================== */
-if (typeof VMM == 'undefined') {
-	
+if ('undefined' == typeof VMM ) {
+
 	/* Main Scope Container
 	================================================== */
 	//var VMM = {};
 	var VMM = Class.extend({});
-	
+
 	/* Debug
 	================================================== */
 	VMM.debug = true;
-	
+
 	/* Master Config
 	================================================== */
-	
+
 	VMM.master_config = ({
-		
+
 		init: function() {
 			return this;
 		},
-		
+
 		sizes: {
 			api: {
-				width:			0,
-				height:			0
+				width: 0,
+				height: 0
 			}
 		},
-		
-		vp:				"Pellentesque nibh felis, eleifend id, commodo in, interdum vitae, leo",
-		
+
+		vp: 'Pellentesque nibh felis, eleifend id, commodo in, interdum vitae, leo',
+
 		api_keys_master: {
-			flickr:		"RAIvxHY4hE/Elm5cieh4X5ptMyDpj7MYIxziGxi0WGCcy1s+yr7rKQ==",
-			//google:		"jwNGnYw4hE9lmAez4ll0QD+jo6SKBJFknkopLS4FrSAuGfIwyj57AusuR0s8dAo=",
-			google:		"uQKadH1VMlCsp560gN2aOiMz4evWkl1s34yryl3F/9FJOsn+/948CbBUvKLN46U=",
-			twitter:	""
+			flickr: 'RAIvxHY4hE/Elm5cieh4X5ptMyDpj7MYIxziGxi0WGCcy1s+yr7rKQ==',
+			google: 'uQKadH1VMlCsp560gN2aOiMz4evWkl1s34yryl3F/9FJOsn+/948CbBUvKLN46U=',
+			twitter: ''
 		},
-		
+
 		timers: {
-			api:			7000
+			api: 7000
 		},
-		
+
 		api:	{
-			pushques:		[]
-			
+			pushques: []
 		},
-		
+
 		twitter: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		flickr: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		youtube: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		vimeo: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		vine: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		webthumb: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		googlemaps: {
-			active:			false,
-			map_active:		false,
-			places_active:	false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			map_active: false,
+			places_active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		googledocs: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		googleplus: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		},
-		
+
 		wikipedia: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[],
-			tries:			0
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: [],
+			tries: 0
 		},
-		
+
 		soundcloud: {
-			active:			false,
-			array:			[],
-			api_loaded:		false,
-			que:			[]
+			active: false,
+			array: [],
+			api_loaded: false,
+			que: []
 		}
-		
+
 	}).init();
-	
+
 	//VMM.createElement(tag, value, cName, attrs, styles);
-	VMM.createElement = function(tag, value, cName, attrs, styles) {
-		
-		var ce = "";
-		
-		if (tag != null && tag != "") {
-			
+	VMM.createElement = function( tag, value, cName, attrs, styles ) {
+
+		var ce = '';
+
+		if ( null != tag && '' != tag) {
+
 			// TAG
-			ce += "<" + tag;
-			if (cName != null && cName != "") {
-				ce += " class='" + cName + "'";
-			};
-			
-			if (attrs != null && attrs != "") {
-				ce += " " + attrs;
-			};
-			
-			if (styles != null && styles != "") {
-				ce += " style='" + styles + "'";
-			};
-			
-			ce += ">";
-			
-			if (value != null && value != "") {
+			ce += '<' + tag;
+			if ( null != cName && '' != cName ) {
+				ce += ' class="' + cName + '"';
+			}
+
+			if ( null != attrs && '' != attrs ) {
+				ce += ' ' + attrs;
+			}
+
+			if ( null != styles && '' != styles ) {
+				ce += ' style="' + styles + '"';
+			}
+
+			ce += '>';
+
+			if ( null != value && '' != value ) {
 				ce += value;
 			}
-			
-			// CLOSE TAG
-			ce = ce + "</" + tag + ">";
-		}
-		
-		return ce;
-		
-    };
 
-	VMM.createMediaElement = function(media, caption, credit) {
-		
-		var ce = "";
-		
+			// CLOSE TAG
+			ce = ce + '</' + tag + '>';
+		}
+
+		return ce;
+
+	};
+
+	VMM.createMediaElement = function( media, caption, credit ) {
+
+		var ce = '';
 		var _valid = false;
-		
-		ce += "<div class='media'>";
-		
-		if (media != null && media != "") {
-			
+
+		ce += '<div class="media">';
+
+		if ( null != media && '' != media ) {
+
 			valid = true;
-			
-			ce += "<img src='" + media + "'>";
-			
+
+			ce += '<img src="' + media + '" />>';
+
 			// CREDIT
-			if (credit != null && credit != "") {
+			if ( null != credit && '' != credit ) {
 				ce += VMM.createElement("div", credit, "credit");
 			}
-			
+
 			// CAPTION
-			if (caption != null && caption != "") {
+			if ( null != caption && '' != caption ) {
 				ce += VMM.createElement("div", caption, "caption");
 			}
 
 		}
-		
-		ce += "</div>";
-		
+
+		ce += '</div>';
+
 		return ce;
-		
-    };
+
+	};
 
 	// Hide URL Bar for iOS and Android by Scott Jehl
 	// https://gist.github.com/1183357
 
-	VMM.hideUrlBar = function () {
+	VMM.hideUrlBar = function() {
 		var win = window,
 			doc = win.document;
 
 		// If there's a hash, or addEventListener is undefined, stop here
-		if( !location.hash || !win.addEventListener ){
+		if ( ! location.hash || ! win.addEventListener ) {
 
-			//scroll to 1
+			// scroll to 1
 			window.scrollTo( 0, 1 );
 			var scrollTop = 1,
 
-			//reset to 0 on bodyready, if needed
-			bodycheck = setInterval(function(){
-				if( doc.body ){
-					clearInterval( bodycheck );
-					scrollTop = "scrollTop" in doc.body ? doc.body.scrollTop : 1;
-					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
-				}	
-			}, 15 );
+				//reset to 0 on bodyready, if needed
+				bodycheck = setInterval(function(){
+					if( doc.body ){
+						clearInterval( bodycheck );
+						scrollTop = 'scrollTop' in doc.body ? doc.body.scrollTop : 1;
+						win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+					}
+				}, 15 );
 
-			win.addEventListener( "load", function(){
-				setTimeout(function(){
+			win.addEventListener( 'load', function() {
+				setTimeout( function() {
+
 					//reset to hide addr bar at onload
-					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
-				}, 0);
+					win.scrollTo( 0, 1 === scrollTop ? 0 : 1 );
+				}, 0 );
 			}, false );
 		}
 	};
-	
 
 }
 
 /* Trace (console.log)
 ================================================== */
 function trace( msg ) {
-	if (VMM.debug) {
-		if (window.console) {
-			console.log(msg);
-		} else if ( typeof( jsTrace ) != 'undefined' ) {
+	if ( VMM.debug ) {
+		if ( window.console ) {
+			console.log( msg );
+		} else ( 'undefined' != typeof( jsTrace ) ) {
 			jsTrace.send( msg );
-		} else {
-			//alert(msg);
 		}
 	}
 }
