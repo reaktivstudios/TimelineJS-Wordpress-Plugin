@@ -129,10 +129,11 @@ function kl_timeline_tinymce_button( $context ) {
 	$img          = KL_TIMELINE_URL . 'knight-diamond.png';
 	$container_id = 'add_timeline_form';
 	$title        = __( 'Insert Timeline', 'kl-timeline' );
+	$link_text    = __( 'Add Timeline', 'kl-timeline' );
 
 	// append the icon.
 	$context .= "<a class='thickbox button' style='background: url({$img}) no-repeat 3px 3px; padding-left: 20px' title='{$title}' id='add_timeline'
-	href='#TB_inline?width=600&height=495&inlineId={$container_id}'> Add Timeline</a>";
+	href='#TB_inline?width=600&height=495&inlineId={$container_id}'> {$link_text}</a>";
 
 	return $context;
 }
@@ -144,11 +145,11 @@ function kl_timeline_tinymce() {
 ?>
 <script type="text/javascript">
 	function insertTimeline() {
-		var data_src = jQuery('#timeline_data_src').val();
-		var height = jQuery('#timeline_height').val();
-		var width = jQuery('#timeline_width').val();
-		var lang = jQuery('#timeline_lang').val();
-		var font = jQuery('#timeline_font').val();
+		var data_src = jQuery('#timeline_data_src').val(),
+			height = jQuery('#timeline_height').val(),
+			width = jQuery('#timeline_width').val(),
+			lang = jQuery('#timeline_lang').val(),
+			font = jQuery('#timeline_font').val();
 		try {
 			// doesn't exist in TJS3.
 			var maptype = jQuery('#timeline_maptype').val();
@@ -215,68 +216,68 @@ function kl_timeline_tinymce() {
 								<td valign="top" style="padding: 0 15px 5px 0;"><label for="timeline_lang"><?php esc_html_e( 'Language', 'kl-timeline' ); ?></label></td>
 								<td style="padding: 0 0 10px;">
 									<select id="timeline_lang">
-									<option value="en" data-lang="English">English</option>
-									<option value="en-24hr" data-lang="English (24-hour time)">English (24-hour time)</option>
-									<option value="ar" data-lang="Arabic">العربية</option>
-									<option value="af" data-lang="Afrikaans">Afrikaans</option>
-									<option value="id" data-lang="Indonesian">Bahasa Indonesia</option>
-									<option value="ms" data-lang="Malay">Bahasa Melayu</option>
-									<option value="be" data-lang="Belarusian">Беларуская мова</option>
-									<option value="bg" data-lang="Bulgarian">български език</option>
-									<option value="ca" data-lang="Catalan">Català</option>
-									<option value="cz" data-lang="Czech">Čeština</option>
-									<option value="da" data-lang="Danish">Dansk</option>
-									<option value="hi" data-lang="Hindi">हिन्दी</option>
-									<option value="de" data-lang="German">Deutsch</option>
-									<option value="et" data-lang="Estonian">Eesti keel</option>
-									<option value="el" data-lang="Greek">ελληνικά</option>
-									<option value="es" data-lang="Spanish">Español</option>
-									<option value="eo" data-lang="Esperanto">Esperanto</option>
-									<option value="eu" data-lang="Basque">Euskara</option>
-									<option value="fo" data-lang="Faroese">Føroyskt</option>
-									<option value="fr" data-lang="French">Français</option>
-									<option value="fy" data-lang="Frisian">Frysk</option>
-									<option value="ga" data-lang="Irish">Gaeilge</option>
-									<option value="gl" data-lang="Galician">Galego</option>
-									<option value="ko" data-lang="Korean">한국어</option>
-									<option value="hr" data-lang="Croatian">Hrvatski</option>
-									<option value="hy" data-lang="Armenian">Հայերէն</option>
-									<option value="is" data-lang="Icelandic">Íslenska</option>
-									<option value="it" data-lang="Italian">Italiano</option>
-									<option value="he" data-lang="Hebrew">עברית</option>
-									<option value="ka" data-lang="Georgian">ქართული</option>
-									<option value="lv" data-lang="Latvian">Latviešu valoda</option>
-									<option value="lb" data-lang="Luxembourgish">Lëtzebuergesch</option>
-									<option value="lt" data-lang="Lithuanian">Lietuvių kalba</option>
-									<option value="ro" data-lang="Romanian">Limba română</option>
-									<option value="hu" data-lang="Hungarian">Magyar</option>
-									<option value="my" data-lang="Myanmar"> မြန်မာ</option>
-									<option value="nl" data-lang="Dutch">Nederlands</option>
-									<option value="ne" data-lang="Nepali">नेपाली</option>
-									<option value="ja" data-lang="Japanese">日本語</option>
-									<option value="no" data-lang="Norwegian">Norsk</option>
-									<option value="th" data-lang="Thai">ภาษาไทย</option>
-									<option value="pl" data-lang="Polish">Polski</option>
-									<option value="pt" data-lang="Portuguese">Português</option>
-									<option value="pt-br" data-lang="Portuguese - Brazilian">Português (Brasil)</option>
-									<option value="rm" data-lang="Romansh">Rumantsch</option>
-									<option value="ru" data-lang="Russian">Русский язык</option>
-									<option value="si" data-lang="Sinhalese">සිංහල</option>
-									<option value="sl" data-lang="Slovenian">Slovenščina</option>
-									<option value="sk" data-lang="Slovak">Slovenčina</option>
-									<option value="sr" data-lang="Serbian - Latin">Srpski</option>
-									<option value="sr-cy" data-lang="Serbian - Cyrillic">српски</option>
-									<option value="fi" data-lang="Finnish">Suomi</option>
-									<option value="sv" data-lang="Swedish">Svenska</option>
-									<option value="zh-tw" data-lang="Taiwanese">Taiwanese</option>
-									<option value="tl" data-lang="Tagalog">Tagalog</option>
-									<option value="ta" data-lang="Tamil">தமிழ்</option>
-									<option value="te" data-lang="Telugu">తెలుగు</option>
-									<option value="tr" data-lang="Turkish">Türkçe</option>
-									<option value="uk" data-lang="Ukrainian">Українська</option>
-									<option value="ur" data-lang="Urdu">اُردُو</option>
-									<option value="fa" data-lang="Farsi">فارسی</option>
-									<option value="zh-cn" data-lang="Chinese">中文</option>
+										<option value="en" data-lang="English">English</option>
+										<option value="en-24hr" data-lang="English (24-hour time)">English (24-hour time)</option>
+										<option value="ar" data-lang="Arabic">العربية</option>
+										<option value="af" data-lang="Afrikaans">Afrikaans</option>
+										<option value="id" data-lang="Indonesian">Bahasa Indonesia</option>
+										<option value="ms" data-lang="Malay">Bahasa Melayu</option>
+										<option value="be" data-lang="Belarusian">Беларуская мова</option>
+										<option value="bg" data-lang="Bulgarian">български език</option>
+										<option value="ca" data-lang="Catalan">Català</option>
+										<option value="cz" data-lang="Czech">Čeština</option>
+										<option value="da" data-lang="Danish">Dansk</option>
+										<option value="hi" data-lang="Hindi">हिन्दी</option>
+										<option value="de" data-lang="German">Deutsch</option>
+										<option value="et" data-lang="Estonian">Eesti keel</option>
+										<option value="el" data-lang="Greek">ελληνικά</option>
+										<option value="es" data-lang="Spanish">Español</option>
+										<option value="eo" data-lang="Esperanto">Esperanto</option>
+										<option value="eu" data-lang="Basque">Euskara</option>
+										<option value="fo" data-lang="Faroese">Føroyskt</option>
+										<option value="fr" data-lang="French">Français</option>
+										<option value="fy" data-lang="Frisian">Frysk</option>
+										<option value="ga" data-lang="Irish">Gaeilge</option>
+										<option value="gl" data-lang="Galician">Galego</option>
+										<option value="ko" data-lang="Korean">한국어</option>
+										<option value="hr" data-lang="Croatian">Hrvatski</option>
+										<option value="hy" data-lang="Armenian">Հայերէն</option>
+										<option value="is" data-lang="Icelandic">Íslenska</option>
+										<option value="it" data-lang="Italian">Italiano</option>
+										<option value="he" data-lang="Hebrew">עברית</option>
+										<option value="ka" data-lang="Georgian">ქართული</option>
+										<option value="lv" data-lang="Latvian">Latviešu valoda</option>
+										<option value="lb" data-lang="Luxembourgish">Lëtzebuergesch</option>
+										<option value="lt" data-lang="Lithuanian">Lietuvių kalba</option>
+										<option value="ro" data-lang="Romanian">Limba română</option>
+										<option value="hu" data-lang="Hungarian">Magyar</option>
+										<option value="my" data-lang="Myanmar"> မြန်မာ</option>
+										<option value="nl" data-lang="Dutch">Nederlands</option>
+										<option value="ne" data-lang="Nepali">नेपाली</option>
+										<option value="ja" data-lang="Japanese">日本語</option>
+										<option value="no" data-lang="Norwegian">Norsk</option>
+										<option value="th" data-lang="Thai">ภาษาไทย</option>
+										<option value="pl" data-lang="Polish">Polski</option>
+										<option value="pt" data-lang="Portuguese">Português</option>
+										<option value="pt-br" data-lang="Portuguese - Brazilian">Português (Brasil)</option>
+										<option value="rm" data-lang="Romansh">Rumantsch</option>
+										<option value="ru" data-lang="Russian">Русский язык</option>
+										<option value="si" data-lang="Sinhalese">සිංහල</option>
+										<option value="sl" data-lang="Slovenian">Slovenščina</option>
+										<option value="sk" data-lang="Slovak">Slovenčina</option>
+										<option value="sr" data-lang="Serbian - Latin">Srpski</option>
+										<option value="sr-cy" data-lang="Serbian - Cyrillic">српски</option>
+										<option value="fi" data-lang="Finnish">Suomi</option>
+										<option value="sv" data-lang="Swedish">Svenska</option>
+										<option value="zh-tw" data-lang="Taiwanese">Taiwanese</option>
+										<option value="tl" data-lang="Tagalog">Tagalog</option>
+										<option value="ta" data-lang="Tamil">தமிழ்</option>
+										<option value="te" data-lang="Telugu">తెలుగు</option>
+										<option value="tr" data-lang="Turkish">Türkçe</option>
+										<option value="uk" data-lang="Ukrainian">Українська</option>
+										<option value="ur" data-lang="Urdu">اُردُو</option>
+										<option value="fa" data-lang="Farsi">فارسی</option>
+										<option value="zh-cn" data-lang="Chinese">中文</option>
 									</select><br/>
 								</td>
 							</tr>
